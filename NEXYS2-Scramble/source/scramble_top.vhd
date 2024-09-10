@@ -198,13 +198,12 @@ begin
   p_video_ouput : process
   begin
     wait until rising_edge(clk);
+      O_VIDEO_R <= (video_r_x2(3) or video_r_x2(2)) & video_r_x2(1 downto 0);
+      O_VIDEO_G <= (video_g_x2(3) or video_g_x2(2)) & video_g_x2(1 downto 0);
+      O_VIDEO_B <= video_b_x2(1 downto 0);
 
-      O_VIDEO_R(2 downto 0) <= video_r_x2(2 downto 0);
-      O_VIDEO_G(2 downto 0) <= video_g_x2(2 downto 0);
-      O_VIDEO_B(1 downto 0) <= video_b_x2(1 downto 0);
       O_HSYNC   <= hsync_x2;
       O_VSYNC   <= vsync_x2;
-
   end process;
 -------------------------------------------------------------
   --
